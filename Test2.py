@@ -2,18 +2,18 @@ import streamlit as st
 
 def test2_page():
     st.title("Test2")
-    st.write("ברוך הבא לעמוד Test2!")
+    st.write("Welcome to the Test2 page!")
 
-    # הוספת תמונה אקראית
+    # Add a random image
     st.image(
         "https://picsum.photos/800/600",
-        caption="תמונה אקראית מאתר Picsum Photos",
-        use_container_width=True,  # הפרמטר המעודכן
+        caption="Random image from Picsum Photos",
+        use_container_width=True,  # Updated parameter
     )
 
-    # כפתורי מעבר לעמודים אחרים
-    if st.button("מעבר לעמוד Home"):
+    # Buttons for navigating to other pages
+    if st.button("Go to Home"):
         st.session_state.page = "Home"
 
-    if st.button("מעבר לעמוד Test"):
+    if st.button("Go to Test"):
         st.session_state.page = "Test"

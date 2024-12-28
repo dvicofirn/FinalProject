@@ -2,34 +2,34 @@ import streamlit as st
 from PIL import Image
 
 def test_page():
-    # כותרת ראשית
+    # Main title
     st.markdown(
         "<h1 style='text-align: center; color: blue;'>Welcome to the Demo<br>on Rank-Based Approaches<br>to Recommender Systems!</h1>",
         unsafe_allow_html=True,
     )
 
-    # טעינת תמונה מהמחשב
+    # Loading an image from the computer
     try:
-        image = Image.open("Music.jpeg")  # החלף בשם הקובץ או הנתיב לתמונה שלך
+        image = Image.open("Music.jpeg")  # Replace with your file name or path
         st.image(image, caption="Music Note", use_container_width=True)
     except FileNotFoundError:
         st.error("Could not find the image. Please check the file path and name.")
 
-    # טקסט להזנת שם
+    # Text for name input
     st.markdown(
         "<h3 style='text-align: center; color: blue;'>Please enter your name to begin.</h3>",
         unsafe_allow_html=True,
     )
 
-    # שדה קלט לשם
+    # Name input field
     name = st.text_input("", placeholder="Enter your name here")
 
-    # פעולה על בסיס שם
+    # Action based on name input
     if st.button("Start"):
         st.success(f"Welcome, {name}!")
 
-    # כפתורי מעבר לעמודים אחרים
-    st.divider()  # קו הפרדה
+    # Buttons for navigating to other pages
+    st.divider()  # Divider line
     if st.button("Go to Home"):
         st.session_state.page = "Home"
 

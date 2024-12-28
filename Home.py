@@ -1,22 +1,22 @@
 import streamlit as st
 
-# הגדרת עמוד ברירת מחדל ב-Session State
+# Setting a default page in Session State
 if "page" not in st.session_state:
-    st.session_state.page = "Home"  # עמוד ברירת מחדל
+    st.session_state.page = "Home"  # Default page
 
-# ניווט בין עמודים
+# Page navigation
 if st.session_state.page == "Home":
     st.title("Home")
-    st.write("זהו העמוד הראשי שלך.")
+    st.write("This is your main page.")
 
-    if st.button("מעבר לעמוד Test"):
+    if st.button("Go to Test page"):
         st.session_state.page = "Test"
 
-    if st.button("מעבר לעמוד Test2"):
+    if st.button("Go to Test2 page"):
         st.session_state.page = "Test2"
 elif st.session_state.page == "Test":
     from Test import test_page
-    test_page()  # טעינת עמוד Test
+    test_page()  # Loading the Test page
 elif st.session_state.page == "Test2":
     from Test2 import test2_page
-    test2_page()  # טעינת עמוד Test2
+    test2_page()  # Loading the Test2 page
