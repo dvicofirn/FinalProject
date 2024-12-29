@@ -7,7 +7,7 @@ if "page" not in st.session_state:
 # Page navigation
 if st.session_state.page == "Home":
     st.title("Home")
-    st.write("This is your Home page.")
+    st.write("This is your Home page!")
 
     if st.button("Go to Test page"):
         st.session_state.page = "Test"
