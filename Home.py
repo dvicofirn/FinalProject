@@ -30,6 +30,8 @@ def home_page():
         if name != None:
             st.success(f"Welcome, {name}!")
 
+
+
     # Divider line
     st.divider()
 
@@ -38,6 +40,7 @@ def home_page():
     with col2:
         if st.button("Next"):
             st.session_state.page = "Intro"
+            st.rerun()
 
 # Set default page to Home
 if "page" not in st.session_state:

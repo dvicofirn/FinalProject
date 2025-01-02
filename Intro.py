@@ -80,6 +80,7 @@ def Intro_page():
     with col2:
         if st.button("Let's Start", key="next_song_1"):
             st.session_state.page = "Song_1"
+            st.rerun()
 
 
 

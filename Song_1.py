@@ -66,6 +66,8 @@ def Song_1_page():
     with col1:
         if st.button("👍", key="like_song_1"):
             st.success("You liked this song!")
+
+
     with col3:
         if st.button("👎", key="dislike_song_1"):
             st.warning("You disliked this song!")
@@ -75,3 +77,5 @@ def Song_1_page():
     with col_next[1]:  # Aligning to the right
         if st.button("Next Song", key="next_song_2"):
             st.session_state.page = "Song_2"
+            st.rerun()
+
