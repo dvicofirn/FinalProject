@@ -55,3 +55,12 @@ elif st.session_state.page == "Intro":
 elif st.session_state.page == "Song_1":
     from Song_1 import Song_1_page
     Song_1_page()
+elif st.session_state.page == "Song_2":
+    from Song_2 import Song_2_page
+    Song_2_page()
+elif st.session_state.page == "Song_3":
+    from Song_3 import Song_3_page
+    Song_3_page()
+elif st.session_state.page == "Song_4":
+    from Song_4 import Song_4_page
+    Song_4_page()
