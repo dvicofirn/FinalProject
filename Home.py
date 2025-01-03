@@ -8,13 +8,12 @@ def home_page():
         "<h1 style='text-align: center; color: blue;'>Welcome to the Demo<br>on Rank-Based Approaches<br>to Recommender Systems!</h1>",
         unsafe_allow_html=True,
     )
-
-    # Loading an image from the computer
+    
     try:
-        image = Image.open("Music.jpeg")  # Replace with your file name or path
-        st.image(image, caption="Music Note", use_container_width=True)
+        image_path = "Music.jpeg"  # Replace with your image file name
+        st.image(image_path, caption="Music Note!", use_container_width=True)
     except FileNotFoundError:
-        st.error("Could not find the image. Please check the file path and name.")
+        st.error("Could not load the album cover image. Please check the file path.")
 
     # Text for name input
     st.markdown(
