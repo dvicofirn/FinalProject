@@ -5,7 +5,7 @@ from PIL import Image
 def home_page():
     # Main title
     st.markdown(
-        "<h1 style='text-align: center; color: blue;'>Welcome to the Demo<br>on Rank-Based Approaches<br>to Recommender Systems!</h1>",
+        "<h1 style='text-align: center; color: blue; font-size: 30px;'>Welcome to the Demo<br>on Rank-Based Approaches<br>to Recommender Systems!</h1>",
         unsafe_allow_html=True,
     )
     
