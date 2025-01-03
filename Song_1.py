@@ -57,8 +57,7 @@ def Song_1_page():
         st.error("Could not load the album cover image. Please check the file path.")
 
     # Song audio
-    audio_file = open("your_audio_file.aac", "rb").read()
-    st.audio("song1_audio.mp3", format="audio/mp3")  # Replace with your song file name
+    audio_file = open("song1_audio.mp3", "rb").read()
     st.audio(audio_file, format="audio/aac")
 
     # Feedback buttons with emojis
