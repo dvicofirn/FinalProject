@@ -43,7 +43,7 @@ def Song_1_page():
     st.markdown(
         """
         <div class="container">
-            <div class="song-title">Now Playing: Smells Like Teen Spirit By Nirvana</div>
+            <div class="song-title">Now Playing: Smells Like Teen Spirit By Nirvana!</div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -57,7 +57,7 @@ def Song_1_page():
         st.error("Could not load the album cover image. Please check the file path.")
 
     # Song audio
-    st.audio("song1_audio.mp3", format="audio/mp3")  # Replace with your song file name
+    st.audio("song1_audio.mp3", format="audio/mpeg)  # Replace with your song file name
 
     # Feedback buttons with emojis
     col1, col2, col3 = st.columns([1, 3, 1])  # Adjust proportions for alignment
