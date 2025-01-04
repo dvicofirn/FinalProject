@@ -74,8 +74,8 @@ def Song_4_page():
     # Navigation to the next song
     col_next = st.columns([1, 3])  # Adjust proportions for alignment
     with col_next[1]:  # Aligning to the right
-        if st.button("Next Song", key="next_song_5"):
-            st.session_state.page = "Song_5"
+        if st.button("Next", key="persona_choose"):
+            st.session_state.page = "persona_choose"
             st.rerun()
 
     st.markdown("Your Feedback So Far:")
