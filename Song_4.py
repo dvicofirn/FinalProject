@@ -42,7 +42,7 @@ def Song_4_page():
     st.markdown(
         """
         <div class="container">
-            <div class="song-title">Now Playing: Uptown Funk By Mark Ronson and Bruno Mars </div>
+            <div class="song-title">Now Playing: Uptown Funk By Mark Ronson and Bruno Mars! </div>
         </div>
         """,
         unsafe_allow_html=True,
