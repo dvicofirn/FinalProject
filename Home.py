@@ -1,13 +1,15 @@
 import streamlit as st
 from PIL import Image
 
+hide_github_icon = """
+#GithubIcon {
+  visibility: hidden;
+}
+"""
+st.markdown(hide_github_icon, unsafe_allow_html=True)
+
 # Home page function
 def home_page():
-    hide_github_icon = """
-    #GithubIcon{
-        visibility: hidden;
-    }
-    st.markdown(hide_github_icon, unsafe_allow_html=True,)
     # Main title
     st.markdown(
         "<h1 style='text-align: center; color: blue; font-size: 30px;'>Welcome to the Demo<br>on Rank-Based Approaches<br>to Recommender Systems!</h1>",
