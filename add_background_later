@@ -1,0 +1,13 @@
+import streamlit as st
+
+page_element = """
+<style>
+[data-testid="stAppViewContainer"] {
+  background: linear-gradient(135deg, #6A1B9A, #8E24AA, #BA68C8);
+  background-size: cover;
+  color: #FFFFFF;
+}
+</style>
+"""
+
+st.markdown(page_element, unsafe_allow_html=True)
