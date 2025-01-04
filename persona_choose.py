@@ -66,10 +66,7 @@ def persona_choose_page():
         unsafe_allow_html=True,
     )
 
-    try:
-        st.image(chosen_person["image"], use_container_width=True)
-    except FileNotFoundError:
-        st.error(f"Could not load the image for {chosen_person['name']}. Please check the file path.")
+    
 
     st.markdown(
         f"""
