@@ -63,3 +63,9 @@ elif st.session_state.page == "Song_3":
 elif st.session_state.page == "Song_4":
     from Song_4 import Song_4_page
     Song_4_page()
+elif st.session_state.page == "persona_choose":
+    from persona_choose import persona_choose_page
+    persona_choose_page()
+elif st.session_state.page == "songs_persona_like":
+    from songs_persona_like import songs_persona_like_page
+    songs_persona_like_page()
