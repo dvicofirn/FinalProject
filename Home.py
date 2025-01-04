@@ -1,13 +1,6 @@
 import streamlit as st
 from PIL import Image
 
-hide_menu_style = """
-        <style>
-        #MainMenu {visibility: hidden;}
-        </style>
-        """
-st.markdown(hide_menu_style, unsafe_allow_html=True)
-
 # Home page function
 def home_page():
     # Main title
