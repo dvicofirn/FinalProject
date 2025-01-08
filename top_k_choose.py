@@ -55,10 +55,7 @@ def top_k_choose_page():
                 background-color: #45a049;
             }
             img {
-                object-fit: cover;
-                width: 300px;  /* קביעת רוחב 300 */
-                height: 300px; /* קביעת גובה 300 */
-                border-radius: 25px; /* רדיוס לתמונה */
+                border-radius: 25px;
             }
         </style>
         """,
@@ -85,7 +82,7 @@ def top_k_choose_page():
         col = cols[i % 3]  # טורים מתחלפים
         with col:
             with st.container():
-                st.image(image_path, use_container_width=300)
+                st.image(image_path)
                 st.audio(audio_path, format="audio/acc")
                 st.markdown("<br>", unsafe_allow_html=True)
 
