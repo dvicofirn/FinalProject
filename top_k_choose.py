@@ -18,75 +18,58 @@ def top_k_choose_page():
                 background-color: #f5f5f5;
                 color: #333333;
             }
-            .song-card {
-                background: #ffffff;
-                border-radius: 20px;
-                padding: 15px;
-                text-align: center;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                transition: transform 0.2s;
-                margin: 10px;
-            }
-            .song-card:hover {
-                transform: scale(1.05);
-            }
             .song-title {
+                text-align: center;
                 font-size: 16px;
                 font-weight: bold;
-                margin-top: 10px;
+                margin-top: 5px;
+            }
+            .stImage > img {
+                border-radius: 10px;
+                object-fit: cover;
+                width: 150px;
+                height: 150px;
             }
             .stAudio {
-                margin-top: 10px;
-            }
-            img {
-                border-radius: 15px;
-                height: 120px;
-                width: 120px;
-                object-fit: cover;
+                margin-top: 5px;
+                margin-bottom: 10px;
             }
         </style>
         """,
         unsafe_allow_html=True,
     )
 
-    persona_name = st.session_state.persona
+    persona_name = "vvv"
     st.markdown(f"<h1 style='text-align: center;'>Choose the Top 3 Songs that {persona_name} would love 🎵</h1>", unsafe_allow_html=True)
 
+    # יצירת מולטי־סלקט לבחירת 3 שירים
     selected_songs = st.multiselect(
-        "",
+        "Select up to 3 songs:",
         songs_data["song"].tolist(),
         max_selections=3
     )
 
-    # יצירת גריד להצגת השירים
-    cols = st.columns(3)  # יצירת 3 עמודות עבור כל שורה
+    # הצגת השירים ב-3 עמודות
+    cols_per_row = 3
+    cols = st.columns(cols_per_row)
     for i, row in songs_data.iterrows():
-        song_name = row["song"]
-        image_path = os.path.join(images_folder, f"{song_name}.jpg")
-        audio_path = os.path.join(audio_folder, f"{song_name}.mp3")
+        col = cols[i % cols_per_row]  # מחזיר טור מתאים
+        with col:
+            song_name = row["song"]
+            image_path = os.path.join(images_folder, f"{song_name}.jpg")
+            audio_path = os.path.join(audio_folder, f"{song_name}.mp3")
 
-        with cols[i % 3]:  # סבב בין העמודות
-            with st.container():
-                st.image(image_path, caption=song_name, use_container_width=True)
-                st.audio(audio_path, format="audio/mp3")
-                st.markdown("<br>", unsafe_allow_html=True)
+            # הצגת תמונה, שם שיר, ואודיו
+            st.image(image_path, caption=None, use_container_width=False)
+            st.markdown(f"<div class='song-title'>{song_name}</div>", unsafe_allow_html=True)
+            st.audio(audio_path, format="audio/mp3")
 
-    # כפתור האישור
+    # כפתור לאישור הבחירה
     if st.button("Confirm", key="confirm_button"):
         if len(selected_songs) != 3:
             st.error("You must select exactly 3 songs before continuing.")
         else:
             st.success(f"You have selected the following songs: {', '.join(selected_songs)}")
 
-    st.markdown(
-        """
-        <style>
-            .stButton > button {
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+# קריאה לפונקציה
+top_k_choose_page()
