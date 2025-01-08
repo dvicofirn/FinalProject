@@ -12,10 +12,10 @@ def songs_persona_like_page():
     songs_list = get_songs_by_persona(st.session_state.persona)
 
     if "song_index" not in st.session_state:
-        st.session_state.song_index = 0  # התחל מהשיר הראשון
+        st.session_state.song_index = 0
 
     if st.session_state.song_index >= len(songs_list):
-        st.session_state.page = "bbbbbbbbbbbbbbb"
+        st.session_state.page = "top_k_choose"
         st.rerun()
 
     song_title = songs_list[st.session_state.song_index]
@@ -79,12 +79,12 @@ def songs_persona_like_page():
 
     col1, col2, col3 = st.columns([1, 3, 1])  # Adjust proportions for alignment
     with col1:
-        if st.button("✅", key=f"know_song_{st.session_state.song_index}"):
-            st.success("You know this song!")
+        if st.button("👍", key=f"like_song_{st.session_state.song_index}"):
+            st.success("You liked this song!")
 
     with col3:
-        if st.button("❌", key=f"dont_know_song_{st.session_state.song_index}"):
-            st.warning("you don't know this song!")
+        if st.button("👎", key=f"dislike_song_{st.session_state.song_index}"):
+            st.warning("You disliked this song!")
 
     col_next = st.columns([1, 3])  # Adjust proportions for alignment
     with col_next[1]:  # Aligning to the right

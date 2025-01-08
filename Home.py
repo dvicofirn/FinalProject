@@ -1,41 +1,14 @@
 import streamlit as st
 from PIL import Image
-import base64
-
-# Function to add the background image
-def add_background_image(image_file):
-    """
-    Sets the specified image as the background for the Streamlit app.
-
-    Parameters:
-    image_file (str): Path to the background image file.
-    """
-    with open(image_file, "rb") as image:
-        encoded_image = base64.b64encode(image.read()).decode()
-        page_background = f"""
-        <style>
-        [data-testid="stAppViewContainer"] {{
-            background-image: url(data:image/jpeg;base64,{encoded_image});
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: #FFFFFF;
-        }}
-        </style>
-        """
-        st.markdown(page_background, unsafe_allow_html=True)
-
-# Add background image
-add_background_image("Backround.jpeg")
 
 # Home page function
 def home_page():
-    # Main title
+
     st.markdown(
         "<h1 style='text-align: center; color: blue; font-size: 30px;'>Welcome to the Demo<br>on Rank-Based Approaches<br>to Recommender Systems!</h1>",
         unsafe_allow_html=True,
     )
-
+    
     try:
         image_path = "Music.jpeg"  # Replace with your image file name
         st.image(image_path, caption="Music Note!", use_container_width=True)
@@ -55,6 +28,8 @@ def home_page():
     if st.button("Enter"):
         if name != None:
             st.success(f"Welcome, {name}!")
+
+
 
     # Divider line
     st.divider()
@@ -94,3 +69,6 @@ elif st.session_state.page == "persona_choose":
 elif st.session_state.page == "songs_persona_like":
     from songs_persona_like import songs_persona_like_page
     songs_persona_like_page()
+elif st.session_state.page == "top_k_choose":
+    from top_k_choose import top_k_choose_page
+    top_k_choose_page()
