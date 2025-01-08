@@ -3,6 +3,17 @@ from PIL import Image
 
 # Home page function
 def home_page():
+    page_element = """
+    <style>
+    [data-testid="stAppViewContainer"] {
+      background: linear-gradient(135deg, #6A1B9A, #8E24AA, #BA68C8);
+      background-size: cover;
+      color: #FFFFFF;
+    }
+    </style>
+    """
+
+    st.markdown(page_element, unsafe_allow_html=True)
     # Main title
     st.markdown(
         "<h1 style='text-align: center; color: blue; font-size: 30px;'>Welcome to the Demo<br>on Rank-Based Approaches<br>to Recommender Systems!</h1>",
