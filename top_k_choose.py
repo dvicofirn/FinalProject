@@ -11,7 +11,7 @@ def top_k_choose_page():
 
 
 
-    st.set_page_config(page_title="Select Your Songs", layout="wide")
+    st.set_page_config(page_title="Select Your Songs", layout="centered")
 
     st.markdown(
         """
