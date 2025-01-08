@@ -1,6 +1,17 @@
 import streamlit as st
 
 def Intro_page():
+    page_element = """
+            <style>
+            [data-testid="stAppViewContainer"] {
+              background-image: url('Background.jpeg');
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-attachment: fixed;
+              color: #FFFFFF;
+            }
+            </style>
+            """
     # Apply CSS styling for the mobile-like design and button
     st.markdown(
         """

@@ -1,6 +1,17 @@
 import streamlit as st
 
 def Song_3_page():
+    page_element = """
+            <style>
+            [data-testid="stAppViewContainer"] {
+              background-image: url('Background.jpeg');
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-attachment: fixed;
+              color: #FFFFFF;
+            }
+            </style>
+            """
     if "song_feedback" not in st.session_state:
         st.session_state.song_feedback = {}
     st.markdown(
@@ -64,17 +75,14 @@ def Song_3_page():
         if st.button("👍", key="like_song_3"):
             st.success("You liked this song!")
             st.session_state.song_feedback["Stairway to Heaven By Led Zeppelin"] = "Like"
-
+            st.session_state.page = "Song_4"
+            st.rerun()
 
     with col3:
         if st.button("👎", key="dislike_song_3"):
             st.warning("You disliked this song!")
             st.session_state.song_feedback["Stairway to Heaven By Led Zeppelin"] = "Dislike"
-
-    # Navigation to the next song
-    col_next = st.columns([1, 3])  # Adjust proportions for alignment
-    with col_next[1]:  # Aligning to the right
-        if st.button("Next Song", key="next_song_4"):
             st.session_state.page = "Song_4"
             st.rerun()
+
 
