@@ -2,16 +2,18 @@ import streamlit as st
 import pandas as pd
 import os
 
+# This must be the first Streamlit command in the script
+st.set_page_config(page_title="Select Your Songs", layout="wide")
+
 def top_k_choose_page():
+    from Intro import set_background
+    set_background("Backround.jpeg")
+
     images_folder = "‏‏top_k_songs_images"
     audio_folder = "top_k_songs_audio"
 
     csv_file_path = "top_k_songs.csv"
     songs_data = pd.read_csv(csv_file_path)
-
-
-
-    st.set_page_config(page_title="Select Your Songs", layout="wide")
 
     st.markdown(
         """
@@ -65,10 +67,8 @@ def top_k_choose_page():
         unsafe_allow_html=True,
     )
 
-
     persona_name = st.session_state.persona
     st.markdown(f"<h1 style='text-align: center;'>Choose the Top 3 Songs that {persona_name} would love 🎵</h1>", unsafe_allow_html=True)
-
 
     selected_songs = st.multiselect(
         "",
@@ -79,10 +79,10 @@ def top_k_choose_page():
     cols = st.columns(3)
     for i, row in songs_data.iterrows():
         song_name = row["song"]
-        image_path = os.path.join(images_folder, f"{song_name}.jpg")  # נתיב לתמונה
-        audio_path = os.path.join(audio_folder, f"{song_name}.mp3")  # נתיב לקובץ mp3
+        image_path = os.path.join(images_folder, f"{song_name}.jpg")  # Path to the image
+        audio_path = os.path.join(audio_folder, f"{song_name}.mp3")  # Path to the audio file
 
-        col = cols[i % 3]  # טורים מתחלפים
+        col = cols[i % 3]  # Alternate between columns
         with col:
             with st.container():
                 st.image(image_path, use_container_width=300)

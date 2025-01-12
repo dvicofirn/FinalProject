@@ -1,17 +1,31 @@
 import streamlit as st
+import base64
+
+def set_background(image_file):
+    """
+    Set a background image for the Streamlit app using Base64 encoding.
+    Parameters:
+        image_file (str): The path to the image file.
+    """
+    with open(image_file, "rb") as image:
+        encoded_image = base64.b64encode(image.read()).decode()
+        page_background = f"""
+        <style>
+        [data-testid="stAppViewContainer"] {{
+            background-image: url("data:image/jpeg;base64,{encoded_image}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #FFFFFF;
+        }}
+        </style>
+        """
+        st.markdown(page_background, unsafe_allow_html=True)
 
 def Intro_page():
-    page_element = """
-            <style>
-            [data-testid="stAppViewContainer"] {
-              background-image: url('Background.jpeg');
-              background-size: cover;
-              background-repeat: no-repeat;
-              background-attachment: fixed;
-              color: #FFFFFF;
-            }
-            </style>
-            """
+    # Apply the background image
+    set_background("Backround.jpeg")
+
     # Apply CSS styling for the mobile-like design and button
     st.markdown(
         """
@@ -92,6 +106,3 @@ def Intro_page():
         if st.button("Let's Start", key="next_song_1"):
             st.session_state.page = "Song_1"
             st.rerun()
-
-
-

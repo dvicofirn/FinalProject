@@ -3,6 +3,8 @@ import pandas as pd
 
 
 def get_songs_by_persona(persona_name):
+    from Intro import set_background
+    set_background("Backround.jpeg")
     df = pd.read_csv('personas_songs.csv')
     songs = df[df['persona'] == persona_name]['song'].tolist()
     return songs

@@ -3,17 +3,21 @@ from PIL import Image
 
 # Home page function
 def home_page():
+    from Intro import set_background
+    set_background("Backround.jpeg")
 
+    # Main title
     st.markdown(
         "<h1 style='text-align: center; color: blue; font-size: 30px;'>Welcome to the Demo<br>on Rank-Based Approaches<br>to Recommender Systems!</h1>",
         unsafe_allow_html=True,
     )
-    
+
+    # Replacing the music note icon with a transparent PNG file
     try:
-        image_path = "Music.jpeg"  # Replace with your image file name
-        st.image(image_path, caption="Music Note!", use_container_width=True)
+        image_path = "Music.png"  # Replace with your transparent PNG file path
+        st.image(image_path, caption="Music Note!", use_container_width=False)
     except FileNotFoundError:
-        st.error("Could not load the album cover image. Please check the file path.")
+        st.error("Could not load the music note image. Please check the file path.")
 
     # Text for name input
     st.markdown(
@@ -26,10 +30,8 @@ def home_page():
 
     # Action based on name input
     if st.button("Enter"):
-        if name != None:
+        if name:
             st.success(f"Welcome, {name}!")
-
-
 
     # Divider line
     st.divider()

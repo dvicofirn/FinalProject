@@ -2,6 +2,8 @@ import streamlit as st
 import random
 
 def persona_choose_page():
+    from Intro import set_background
+    set_background("Backround.jpeg")
     people = [
         {
             "name": "John",

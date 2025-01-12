@@ -1,17 +1,10 @@
 import streamlit as st
 
+
+
 def Song_2_page():
-    page_element = """
-            <style>
-            [data-testid="stAppViewContainer"] {
-              background-image: url('Background.jpeg');
-              background-size: cover;
-              background-repeat: no-repeat;
-              background-attachment: fixed;
-              color: #FFFFFF;
-            }
-            </style>
-            """
+    from Intro import set_background
+    set_background("Backround.jpeg")
     if "song_feedback" not in st.session_state:
         st.session_state.song_feedback = {}
     st.markdown(
