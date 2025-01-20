@@ -4,7 +4,6 @@ from PIL import Image
 # Home page function
 def home_page():
     from Intro import set_background
-    set_background("demo_background.jpg")
 
     # Main title
     st.markdown(
