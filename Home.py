@@ -1,9 +1,32 @@
 import streamlit as st
-from PIL import Image
+import base64
+
+
+def set_background(image_file):
+    """
+    Set a background image for the Streamlit app using Base64 encoding.
+    Parameters:
+        image_file (str): The path to the image file.
+    """
+    with open(image_file, "rb") as image:
+        encoded_image = base64.b64encode(image.read()).decode()
+        page_background = f"""
+        <style>
+        [data-testid="stAppViewContainer"] {{
+            background-image: url("data:image/jpeg;base64,{encoded_image}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #FFFFFF;
+        }}
+        </style>
+        """
+        st.markdown(page_background, unsafe_allow_html=True)
+
 
 # Home page function
 def home_page():
-    from Intro import set_background
+    set_background("Backround.jpeg")
 
     # Main title
     st.markdown(
@@ -13,7 +36,7 @@ def home_page():
 
     # Replacing the music note icon with a transparent PNG file
     try:
-        image_path = "Music.jpeg"  # Replace with your transparent PNG file path
+        image_path = "Music.png"  # Replace with your transparent PNG file path
         st.image(image_path, caption="Music Note!", use_container_width=False)
     except FileNotFoundError:
         st.error("Could not load the music note image. Please check the file path.")
