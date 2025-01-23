@@ -77,7 +77,7 @@ def persona_choose_page():
         f"""
             <div class="container">
                 <div class="description">
-                    You're seated next to this persona on your flight. Based on the song ratings you've given, it seems like you and this persona could be great friends! To get to know them better, here are some songs they love.
+                    You're seated next to this persona on your flight. Based on the song ratings you've given, it seems like you and this persona could be great friends! To get to know them better, here are some songs they love. For each song , please decide if you familiar with this song or not.
                 </div>
             </div>
         """,
