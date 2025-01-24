@@ -26,50 +26,7 @@ def set_background(image_file):
 
 # Home page function
 def home_page():
-    st.set_page_config(page_title="תמונות בשורה", layout="wide")  # עיצוב רחב לכל סוגי המכשירים
     set_background("Backround.jpeg")
-
-
-        # הוספת CSS מותאם אישית
-    st.markdown(
-        """
-        <style>
-        /* עיצוב שורת התמונות */
-        .image-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px; /* ריווח בין התמונות */
-        }
-        .image-row img {
-            max-width: 30%; /* כל תמונה תהיה עד 30% מהרוחב הזמין */
-            height: auto;
-        }
-        @media (max-width: 768px) {
-            .image-row img {
-                max-width: 30%; /* רוחב מותאם לטלפון */
-            }
-        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-    
-    # יצירת שורה מותאמת אישית עם תמונות
-    st.markdown('<div class="image-row">', unsafe_allow_html=True)
-    
-    # הוספת תמונות
-    st.markdown('<img src="Music.png" alt="תמונה 1" />', unsafe_allow_html=True)
-    st.markdown('<img src="Music.png" alt="תמונה 2" />', unsafe_allow_html=True)
-    st.markdown('<img src="Music.png" alt="תמונה 3" />', unsafe_allow_html=True)
-    
-    # סגירת ה-DIV של השורה
-    st.markdown('</div>', unsafe_allow_html=True)
-    
-    # הערה מתחת לתמונות
-    st.markdown("התמונות נשארות בשורה אחת גם במחשב וגם בטלפון!")
-
-
 
     # Main title
     st.markdown(
@@ -80,6 +37,7 @@ def home_page():
     # Replacing the music note icon with a transparent PNG file
     try:
         image_path = "Music.png"  # Replace with your transparent PNG file path
+        st.image(image_path, use_column_width=True)
     except FileNotFoundError:
         st.error("Could not load the music note image. Please check the file path.")
 
