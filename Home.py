@@ -37,7 +37,7 @@ def home_page():
     # Replacing the music note icon with a transparent PNG file
     try:
         image_path = "Music.png"  # Replace with your transparent PNG file path
-        st.image(image_path, use_column_width=True)
+        st.image(image_path, caption="", use_container_width=True)
     except FileNotFoundError:
         st.error("Could not load the music note image. Please check the file path.")
 
