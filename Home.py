@@ -29,12 +29,26 @@ def home_page():
     st.set_page_config(page_title="תמונות בטלפון", layout="centered")  # עיצוב ממורכז לטלפונים
     set_background("Backround.jpeg")
 
-    st.title("תמונות מותאמות לטלפון")
-    st.markdown("### שלוש תמונות מותאמות למצב לאורך:")
-    st.image("Music.png", caption="תמונה 1", use_column_width=True)
-    st.image("Music.png", caption="תמונה 2", use_column_width=True)
-    st.image("Music.png", caption="תמונה 3", use_column_width=True)
-    st.markdown("התמונות מסודרות בצורה אנכית כך שהן מתאימות לכל מכשיר במצב לאורך!")
+    st.set_page_config(page_title="תמונות בשורה", layout="wide")  # עיצוב רחב לכל סוגי המכשירים
+
+    # כותרת האפליקציה
+    st.title("תמונות מותאמות למצב לאורך בטלפון 📱")
+    
+    # יצירת שורה אחת עם 3 תמונות
+    col1, col2, col3 = st.columns([1, 1, 1])  # עמודות שוות ברוחב
+    
+    # תמונה ראשונה
+    with col1:
+        st.image("Music.png", caption="תמונה 1", use_column_width=True)
+    
+    # תמונה שנייה
+    with col2:
+        st.image("Music.png", caption="תמונה 2", use_column_width=True)
+    
+    # תמונה שלישית
+    with col3:
+        st.image("Music.png", caption="תמונה 3", use_column_width=True)
+
 
 
     # Main title
