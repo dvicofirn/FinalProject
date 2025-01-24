@@ -26,9 +26,9 @@ def set_background(image_file):
 
 # Home page function
 def home_page():
+    st.set_page_config(page_title="תמונות בטלפון", layout="centered")  # עיצוב ממורכז לטלפונים
     set_background("Backround.jpeg")
 
-    st.set_page_config(page_title="תמונות בטלפון", layout="centered")  # עיצוב ממורכז לטלפונים
     st.title("תמונות מותאמות לטלפון 📱")
     st.markdown("### שלוש תמונות מותאמות למצב לאורך:")
     st.image("https://via.placeholder.com/300x200", caption="תמונה 1", use_column_width=True)
