@@ -26,26 +26,20 @@ def set_background(image_file):
 
 # Home page function
 def home_page():
-    st.set_page_config(page_title="תמונות בטלפון", layout="centered")  # עיצוב ממורכז לטלפונים
+    st.set_page_config(page_title="תמונות בשורה", layout="wide")  # עיצוב רחב לכל סוגי המכשירים
     set_background("Backround.jpeg")
 
-    st.set_page_config(page_title="תמונות בשורה", layout="wide")  # עיצוב רחב לכל סוגי המכשירים
 
-    # כותרת האפליקציה
-    st.title("תמונות מותאמות למצב לאורך בטלפון 📱")
+    st.title("תמונות מותאמות למצב לאורך בטלפון")
     
-    # יצירת שורה אחת עם 3 תמונות
     col1, col2, col3 = st.columns([1, 1, 1])  # עמודות שוות ברוחב
     
-    # תמונה ראשונה
     with col1:
         st.image("Music.png", caption="תמונה 1", use_column_width=True)
     
-    # תמונה שנייה
     with col2:
         st.image("Music.png", caption="תמונה 2", use_column_width=True)
     
-    # תמונה שלישית
     with col3:
         st.image("Music.png", caption="תמונה 3", use_column_width=True)
 
