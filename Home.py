@@ -30,18 +30,39 @@ def home_page():
     set_background("Backround.jpeg")
 
 
-    st.title("תמונות מותאמות למצב לאורך בטלפון")
+    st.markdown(
+    """
+    <style>
+    /* מוודא שכל התמונות מיושרות בשורה אחת גם במסכים קטנים */
+    .image-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap; /* אל תאפשר שבירת שורה */
+        overflow-x: auto; /* גלילה אופקית אם אין מספיק מקום */
+    }
+    .image-row img {
+        margin: 0 10px; /* ריווח בין התמונות */
+        max-width: 30%; /* גודל התמונה משתנה בהתאם לרוחב המסך */
+        height: auto;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+    st.markdown('<div class="image-row">', unsafe_allow_html=True)
     
-    col1, col2, col3 = st.columns([1, 1, 1])  # עמודות שוות ברוחב
+    # הצגת התמונות
+    st.image("Music.png", caption="תמונה 1", use_column_width=False)
+    st.image("Music.png", caption="תמונה 2", use_column_width=False)
+    st.image("Music.png", caption="תמונה 3", use_column_width=False)
     
-    with col1:
-        st.image("Music.png", caption="תמונה 1", use_column_width=True)
+    # סגירת ה-DIV של השורה
+    st.markdown('</div>', unsafe_allow_html=True)
     
-    with col2:
-        st.image("Music.png", caption="תמונה 2", use_column_width=True)
-    
-    with col3:
-        st.image("Music.png", caption="תמונה 3", use_column_width=True)
+    # הערה מתחת לתמונות
+    st.markdown("התמונות נשארות בשורה אחת גם בטלפון!")
 
 
 
