@@ -60,7 +60,7 @@ def songs_persona_like_page():
     st.markdown(
         f"""
         <div class="container">
-            <div class="song-title">Now Playing: {song_title}!!!!!!!</div>
+            <div class="song-title">Now Playing: {song_title}</div>
         </div>
         """,
         unsafe_allow_html=True,
