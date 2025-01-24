@@ -30,39 +30,44 @@ def home_page():
     set_background("Backround.jpeg")
 
 
+        # הוספת CSS מותאם אישית
     st.markdown(
-    """
-    <style>
-    /* מוודא שכל התמונות מיושרות בשורה אחת גם במסכים קטנים */
-    .image-row {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: nowrap; /* אל תאפשר שבירת שורה */
-        overflow-x: auto; /* גלילה אופקית אם אין מספיק מקום */
-    }
-    .image-row img {
-        margin: 0 10px; /* ריווח בין התמונות */
-        max-width: 30%; /* גודל התמונה משתנה בהתאם לרוחב המסך */
-        height: auto;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
+        """
+        <style>
+        /* עיצוב שורת התמונות */
+        .image-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px; /* ריווח בין התמונות */
+        }
+        .image-row img {
+            max-width: 30%; /* כל תמונה תהיה עד 30% מהרוחב הזמין */
+            height: auto;
+        }
+        @media (max-width: 768px) {
+            .image-row img {
+                max-width: 30%; /* רוחב מותאם לטלפון */
+            }
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+    
+    # יצירת שורה מותאמת אישית עם תמונות
     st.markdown('<div class="image-row">', unsafe_allow_html=True)
     
-    # הצגת התמונות
-    st.image("Music.png", caption="תמונה 1", use_column_width=False)
-    st.image("Music.png", caption="תמונה 2", use_column_width=False)
-    st.image("Music.png", caption="תמונה 3", use_column_width=False)
+    # הוספת תמונות
+    st.markdown('<img src="Music.png" alt="תמונה 1" />', unsafe_allow_html=True)
+    st.markdown('<img src="Music.png" alt="תמונה 2" />', unsafe_allow_html=True)
+    st.markdown('<img src="Music.png" alt="תמונה 3" />', unsafe_allow_html=True)
     
     # סגירת ה-DIV של השורה
     st.markdown('</div>', unsafe_allow_html=True)
     
     # הערה מתחת לתמונות
-    st.markdown("התמונות נשארות בשורה אחת גם בטלפון!")
+    st.markdown("התמונות נשארות בשורה אחת גם במחשב וגם בטלפון!")
 
 
 
