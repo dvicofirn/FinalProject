@@ -131,10 +131,3 @@ def song_user_classification_page():
         with col3:
             st.button("👍", key="like", on_click=handle_like)
 
-        st.markdown("Your Feedback So Far:")
-        if "song_feedback" in st.session_state:
-            for song, feedback in st.session_state.song_feedback.items():
-                st.write(f"🎵 **{song}**: {feedback}")
-        else:
-            st.write("No feedback recorded yet.")
-
