@@ -1,9 +1,14 @@
 import streamlit as st
 import random
+import time
+
+def button_click():
+    st.session_state.page = "Intro_know_or_dont"
 
 def persona_choose_page():
+    time.sleep(0.5)
     from Intro import set_background
-    set_background("Backround.jpeg")
+    set_background("other images/Backround.webp")
     people = [
         {
             "name": "John",
@@ -26,32 +31,77 @@ def persona_choose_page():
     st.markdown(
         """
         <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
         .container {
-            background-color: #f0f0f5;
-            border-radius: 50px;
-            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 30px;
+            padding: 1px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             font-family: Arial, sans-serif;
-            width: 600px; /* קובע את הרוחב הקבוע */
-            margin: 0 auto; /* ממרכז את הקונטיינר */
+            width: 80%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .block-container {
+            padding-top: 20px !important;
+            margin-top: 20px !important;
         }
 
         .title {
-            font-size: 32px;
+            font-size: 30px;
+            font-weight: 900;
+            background: linear-gradient(to bottom, #000000, #222222, #444444); /* שחור עם עומק */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 
+                2px 2px 5px rgba(0, 0, 0, 0.3), 
+                4px 4px 10px rgba(0, 0, 0, 0.2); /* הוספת ברק */
+        }
+
+        .sub_title {
+            font-size: 15px;
+            color: black;
             font-weight: bold;
-            color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
         }
-        .description {
-            font-size: 18px;
-            color: #555;
-            margin-bottom: 20px;
-        }
+
         img {
-        border-radius: 15px;
-        width: 10px; /* קובע רוחב קבוע */
-        height: 800px; /* קובע גובה קבוע */
+            border-radius: 15px;
+            max-width: 100%;
+            width: 630px;
+            height: 350px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+            }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        .stButton button {
+            width: 100%;
+            font-size: 18px;
+            padding: 15px;
+            border-radius: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .stButton button:hover {
+            background-color: #45a049;
         }
 
         </style>
@@ -63,30 +113,20 @@ def persona_choose_page():
         f"""
             <div class="container">
                 <div class="title">Meet {chosen_person['name']}!</div>
+                <div class="sub_title"> based on your musical taste you can be friends! </div>
             </div>
             """,
         unsafe_allow_html=True,
     )
 
     try:
-        st.image(chosen_person["image"], use_container_width=True)
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            st.image(f"personas_images/{chosen_person['image']}", use_container_width=True)
     except FileNotFoundError:
         st.error(f"Could not load the image for {chosen_person['name']}. Please check the file path.")
 
-    st.markdown(
-        f"""
-            <div class="container">
-                <div class="description">
-                    You're seated next to this persona on your flight. Based on the song ratings you've given, it seems like you and this persona could be great friends! To get to know them better, here are some songs they love. For each song , please decide if you familiar with this song or not.
-                </div>
-            </div>
-        """,
-        unsafe_allow_html=True,
-    )
 
-    col_next = st.columns([1, 3])  # Adjust proportions for alignment
-    with col_next[1]:  # Aligning to the right
-        if st.button("Next", key="songs_persona_like"):
-            st.session_state.page = "songs_persona_like"
-            st.rerun()
-
+    col_next = st.columns([1, 1, 1])
+    with col_next[1]:
+        st.button("Next", key="songs_persona_like", on_click=button_click, use_container_width=True)

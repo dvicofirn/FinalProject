@@ -1,98 +1,147 @@
 import streamlit as st
 import base64
+from Intro import set_background
+import time
 
 
-def set_background(image_file):
-    """
-    Set a background image for the Streamlit app using Base64 encoding.
-    Parameters:
-        image_file (str): The path to the image file.
-    """
-    with open(image_file, "rb") as image:
-        encoded_image = base64.b64encode(image.read()).decode()
-        page_background = f"""
+def get_base64_image(image_path):
+    with open(image_path, "rb") as file:
+        return base64.b64encode(file.read()).decode()
+
+
+def home_page():
+    def click_button():
+        st.session_state.page = "Intro"
+
+    set_background("other images/Backround.webp")
+
+    image_base64 = get_base64_image("other images/Music_notes.png")
+
+    st.markdown(
+        f"""
         <style>
-        [data-testid="stAppViewContainer"] {{
-            background-image: url("data:image/jpeg;base64,{encoded_image}");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: #FFFFFF;
+        .container {{
+            background: linear-gradient(135deg, rgba(10, 10, 40, 0.97), rgba(20, 20, 60, 0.97));
+            border-radius: 20px;
+            padding: 7px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 100, 0.8);
+            text-align: center;
+            margin: auto;
+            margin-bottom: 10px;
+            width: 98%;
+            max-width: 98%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }}
+        .block-container {{
+            padding-top: 25px !important;
+            margin-top: 25px !important;
+        }}
+        .title-text {{
+            font-size: 19px !important;
+            font-weight: bold;
+            text-shadow: 4px 4px 15px rgba(0,150,255,0.9);
+            color: #B3E5FC;
+        }}
+        .subtitle-text {{
+            font-size: 16px !important;
+            text-shadow: 2px 2px 10px rgba(173,216,230,0.8);
+            color: #81D4FA;
+            margin-bottom: 20px;
+        }}
+        .treble-clef {{
+            margin-bottom: 0px;
+            max-width: 100%;
         }}
         </style>
-        """
-        st.markdown(page_background, unsafe_allow_html=True)
-
-
-# Home page function
-def home_page():
-    set_background("Backround.jpeg")
-
-    # Main title
-    st.markdown(
-        "<h1 style='text-align: center; color: blue; font-size: 30px;'>Welcome to the Demo<br>on Rank-Based Approaches<br>to Recommender Systems!</h1>",
+        <div class="container">
+            <img src="data:image/webp;base64,{image_base64}" alt="Opening Image" class="treble-clef">
+            <p class="title-text">Welcome to the Music Recommendation Experience 🎶</p>
+            <p class="subtitle-text">In this demo, you’ll recommend songs for someone, and we’ll compare your picks to Algorithm Y’s suggestions to demonstrate its performance. Let’s see how your intuition compares to data-driven recommendations!</p>
+        </div>
+        """,
         unsafe_allow_html=True,
     )
 
-    # Replacing the music note icon with a transparent PNG file
-    try:
-        image_path = "Music.png"  # Replace with your transparent PNG file path
-        st.image(image_path, caption="", use_container_width=True)
-    except FileNotFoundError:
-        st.error("Could not load the music note image. Please check the file path.")
+    start = get_base64_image("other images/start.png")
 
-    # Text for name input
-    st.markdown(
-        "<h3 style='text-align: center; color: blue;'>Please enter your name to begin.</h3>",
-        unsafe_allow_html=True,
-    )
 
-    # Name input field
-    name = st.text_input("", placeholder="Enter your name here")
+    st.markdown("""
+        <style>
+        .st-key-start_button button{
+            width: 130px;
+            height: 130px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: transform 0.6s ease-in-out, box-shadow 0.3s;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
+            background-image: url('data:image/webp;base64,""" + start + """');
+            background-size: cover;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
 
-    # Action based on name input
-    if st.button("Enter"):
-        if name:
-            st.success(f"Welcome, {name}!")
+        }
+        .st-key-start_button button:hover {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.8);
+        }
+        </style>
+    """, unsafe_allow_html=True)
 
-    # Divider line
-    st.divider()
+    col1, col2, col3 = st.columns([1, 1, 1])
 
-    # Layout with columns for alignment
-    col1, col2 = st.columns([9, 1])  # Adjust proportions as needed
     with col2:
-        if st.button("Next"):
-            st.session_state.page = "Intro"
-            st.rerun()
+        st.button("", key="start_button", on_click=click_button)
 
-# Set default page to Home
+
+    st.markdown("""
+        <style>
+            .column-box {
+                border: 2px dashed lightblue;
+                padding: 10px;
+                text-align: center;
+            }
+        </style>
+    """, unsafe_allow_html=True)
+
+
+
+
 if "page" not in st.session_state:
     st.session_state.page = "Home"
 
-# Page navigation logic
 if st.session_state.page == "Home":
     home_page()
 elif st.session_state.page == "Intro":
     from Intro import Intro_page
-    Intro_page()  # Loading the Intro page
-elif st.session_state.page == "Song_1":
-    from Song_1 import Song_1_page
-    Song_1_page()
-elif st.session_state.page == "Song_2":
-    from Song_2 import Song_2_page
-    Song_2_page()
-elif st.session_state.page == "Song_3":
-    from Song_3 import Song_3_page
-    Song_3_page()
-elif st.session_state.page == "Song_4":
-    from Song_4 import Song_4_page
-    Song_4_page()
+    Intro_page()
+elif st.session_state.page == "song_user_classification":
+    from song_user_classification import song_user_classification_page
+    song_user_classification_page()
 elif st.session_state.page == "persona_choose":
     from persona_choose import persona_choose_page
     persona_choose_page()
+elif st.session_state.page == "Intro_know_or_dont":
+    from Intro_know_or_dont import Intro_know_or_dont_page
+    Intro_know_or_dont_page()
 elif st.session_state.page == "songs_persona_like":
     from songs_persona_like import songs_persona_like_page
     songs_persona_like_page()
+elif st.session_state.page == "method_choose":
+    from methood_choose import method_choose_page
+    method_choose_page()
 elif st.session_state.page == "top_k_choose":
     from top_k_choose import top_k_choose_page
     top_k_choose_page()
+elif st.session_state.page == "compare_lists":
+    from compare_lists import compare_lists_page
+    compare_lists_page()
+elif st.session_state.page == "thank_you":
+    from thank_you import thank_you_page
+    thank_you_page()

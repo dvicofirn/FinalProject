@@ -1,12 +1,12 @@
 import streamlit as st
 import base64
+import time
+
+def get_base64_image(image_path):
+    with open(image_path, "rb") as file:
+        return base64.b64encode(file.read()).decode()
 
 def set_background(image_file):
-    """
-    Set a background image for the Streamlit app using Base64 encoding.
-    Parameters:
-        image_file (str): The path to the image file.
-    """
     with open(image_file, "rb") as image:
         encoded_image = base64.b64encode(image.read()).decode()
         page_background = f"""
@@ -23,86 +23,101 @@ def set_background(image_file):
         st.markdown(page_background, unsafe_allow_html=True)
 
 def Intro_page():
-    # Apply the background image
-    set_background("Backround.jpeg")
+    time.sleep(0.5)
+    set_background("other images/Backround.webp")
 
-    # Apply CSS styling for the mobile-like design and button
     st.markdown(
         """
         <style>
         .container {
-            background-color: black;
+            background: linear-gradient(135deg, rgba(42, 91, 168, 0.97), rgba(76, 130, 199, 0.97), rgba(59, 111, 179, 0.97));
             color: white;
             border-radius: 25px;
-            padding: 20px;
+            padding: 8px;
+            padding-bottom: 10px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 350px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
             margin: auto;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
+        }
+        .block-container {
+            padding-top: 25px !important;
+            margin-top: 25px !important;
         }
         .header {
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 26px;
+            font-weight: 600;
             margin-bottom: 20px;
+            color: #ffffff;
         }
         .description {
-            font-size: 16px;
+            font-size: 22px;
+            font-weight: 300;
             margin-bottom: 20px;
-        }
-        .spotify-logo {
-            margin: 20px auto;
-            width: 120px;
-            height: 120px;
-            background-color: #1DB954;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .spotify-logo img {
-            width: 80px;
-            height: 80px;
+            color: #ffffff;
         }
         .footer {
-            font-size: 14px;
+            font-size: 16px;
             margin-top: 20px;
+            color: #ffffff;
         }
-        .wide-button {
-            background-color: #1DB954;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 15px;
-            width: 100%;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            text-align: center;
-            margin-top: 20px;
+        .green-text {
+            color: #50c878;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
         }
-        .wide-button:hover {
-            background-color: #17a743;
+        .red-text {
+            color: #FF4747; 
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
         }
         </style>
         <div class="container">
-            <div class="header">Here’s a list of songs!</div>
-            <div class="spotify-logo">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg" alt="Spotify Logo">
+            <div class="header"> Like or Dislike? <br> Let's explore your music taste! </div>
+            <div class="description">
+                <span class="green-text">Like the song?</span>&nbsp;&nbsp;Tap 👍 <br>
+                <span class="red-text">Not your vibe?</span>&nbsp;&nbsp;Tap 👎
             </div>
-            <div class="description">Listen and select the emoji that best reflects your feelings about each song.</div>
-            <div class="footer">You can skip, move on, or continue at any time.</div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-    # Divider for separating the content from buttons
     st.divider()
 
-    # Button for navigating to the next page
-    col1, col2 = st.columns([9, 1])  # Adjust proportions as needed
+    def handle_start_click():
+        st.session_state.page = "song_user_classification"
+
+    lets_go = get_base64_image("other images/lets go.png")
+    st.markdown("""
+            <style>
+            .st-key-lets_go button{
+                width: 130px;
+                height: 130px;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                border-radius: 50%;
+                transition: transform 0.6s ease-in-out, box-shadow 0.3s;
+                box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
+                background-image: url('data:image/webp;base64,""" + lets_go + """');
+                background-size: cover;
+                margin: auto;
+                display: flex;
+                flex-direction: column;
+
+            }
+            .st-key-lets_go_button button:hover {
+                transform: rotate(360deg) scale(1.1);
+                box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.8);
+            }
+            </style>
+        """, unsafe_allow_html=True)
+
+    col1, col2, col3 = st.columns([1, 1, 1])
     with col2:
-        if st.button("Let's Start", key="next_song_1"):
-            st.session_state.page = "Song_1"
-            st.rerun()
+        st.button("", key="lets_go", on_click=handle_start_click)
+
+
+
