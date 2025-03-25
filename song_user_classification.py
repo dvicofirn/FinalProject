@@ -107,7 +107,7 @@ def song_user_classification_page():
             image_path = f"classification_songs_images/{current_song}.jpeg"
             st.image(image_path)
 
-        audio_path = f"‏‏classification_songs_audio/{current_song}.mp3"
+        audio_path = f"classification_songs_audio/{current_song}.mp3"
         audio_file = open(audio_path, "rb").read()
         st.audio(audio_file, format="audio/aac")
 
